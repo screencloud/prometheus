@@ -21,6 +21,7 @@ stages:
 jobs:
   include:
     - stage: test_prometheus
+      if: branch != master AND tag IS blank
       script:
         - |
           set -e
@@ -28,10 +29,12 @@ jobs:
           git diff --exit-code
     # Build API container image
     - stage: build_docker_image
-      if: (branch IN (dev, master) AND type != pull_request) OR (branch IN (dev, master) AND type = pull_request) AND tag IS blank
+      if: branch IN (dev, master) AND tag IS blank
       script:
         - |
           set -e
+          make check_license style unused test lint check_assets
+          git diff --exit-code
           cd ${TRAVIS_BUILD_DIR}
           make promu
           promu crossbuild -v
