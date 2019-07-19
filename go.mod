@@ -6,7 +6,7 @@ require (
 	github.com/Azure/go-autorest v11.2.8+incompatible
 	github.com/OneOfOne/xxhash v1.2.5 // indirect
 	github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf
-	github.com/aws/aws-sdk-go v1.15.24
+	github.com/aws/aws-sdk-go v1.20.20
 	github.com/cespare/xxhash v1.1.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/evanphx/json-patch v4.1.0+incompatible // indirect
@@ -20,15 +20,12 @@ require (
 	github.com/google/pprof v0.0.0-20180605153948-8b03ce837f34
 	github.com/googleapis/gnostic v0.2.0 // indirect
 	github.com/gophercloud/gophercloud v0.0.0-20190301152420-fca40860790e
-	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.8.5
 	github.com/hashicorp/consul/api v1.1.0
 	github.com/hashicorp/go-msgpack v0.5.4 // indirect
 	github.com/hashicorp/golang-lru v0.5.1 // indirect
 	github.com/influxdata/influxdb v0.0.0-20170331210902-15e594fc09f1
-	github.com/jmespath/go-jmespath v0.0.0-20160803190731-bd40a432e4c7 // indirect
 	github.com/json-iterator/go v1.1.6
-	github.com/jtolds/gls v4.2.1+incompatible // indirect
 	github.com/miekg/dns v1.1.10
 	github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223
 	github.com/oklog/run v1.0.0
@@ -43,8 +40,6 @@ require (
 	github.com/samuel/go-zookeeper v0.0.0-20161028232340-1d7be4effb13
 	github.com/shurcooL/httpfs v0.0.0-20171119174359-809beceb2371
 	github.com/shurcooL/vfsgen v0.0.0-20180825020608-02ddb050ef6b
-	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
-	github.com/smartystreets/goconvey v0.0.0-20180222194500-ef6db91d284a // indirect
 	github.com/soheilhy/cmux v0.1.4
 	github.com/spf13/pflag v1.0.3 // indirect
 	github.com/stretchr/testify v1.3.0
