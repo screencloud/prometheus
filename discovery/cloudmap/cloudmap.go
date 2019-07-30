@@ -36,15 +36,15 @@ import (
 )
 
 const (
-	cloudMapLabel              			= "" //model.MetaLabelPrefix + "cloudMap_"
-	cloudMapLabelAZ            			= cloudMapLabel + "availability_zone"
-	cloudMapLabelInstanceID    			= cloudMapLabel + "instance_id"
-	cloudMapLabelInstanceState 			= cloudMapLabel + "instance_state"
-	cloudMapLabelClusterName   			= cloudMapLabel + "cluster_name"
-	cloudMapLabelPrivateIP     			= cloudMapLabel + "private_ip"
-	cloudMapLabelTaskDefinitionFamily	= cloudMapLabel + "ecs_task_definition_family"
-	cloudMapLabelServiceName   			= cloudMapLabel + "service_name"
-	cloudMapLabelAccountId     			= cloudMapLabel + "account_id"
+	cloudMapLabel              	      = "" //model.MetaLabelPrefix + "cloudMap_"
+	cloudMapLabelAZ                   = cloudMapLabel + "availability_zone"
+	cloudMapLabelInstanceID    	      = cloudMapLabel + "instance_id"
+	cloudMapLabelInstanceState 	      = cloudMapLabel + "instance_state"
+	cloudMapLabelClusterName   	      = cloudMapLabel + "cluster_name"
+	cloudMapLabelPrivateIP     	      = cloudMapLabel + "private_ip"
+	cloudMapLabelTaskDefinitionFamily = cloudMapLabel + "ecs_task_definition_family"
+	cloudMapLabelServiceName   	      = cloudMapLabel + "service_name"
+	cloudMapLabelAccountId     	      = cloudMapLabel + "account_id"
 )
 
 // DefaultSDConfig is the default EC2 SD configuration.
