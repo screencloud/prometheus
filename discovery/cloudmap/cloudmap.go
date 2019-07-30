@@ -36,13 +36,15 @@ import (
 )
 
 const (
-	cloudMapLabel              = "" //model.MetaLabelPrefix + "cloudMap_"
-	cloudMapLabelAZ            = cloudMapLabel + "availability_zone"
-	cloudMapLabelInstanceID    = cloudMapLabel + "instance_id"
-	cloudMapLabelInstanceState = cloudMapLabel + "instance_state"
-	cloudMapLabelClusterName   = cloudMapLabel + "cluster_name"
-	cloudMapLabelPrivateIP     = cloudMapLabel + "private_ip"
-	cloudMapLabelAccountId     = cloudMapLabel + "account_id"
+	cloudMapLabel                     = "" //model.MetaLabelPrefix + "cloudMap_"
+	cloudMapLabelAZ                   = cloudMapLabel + "availability_zone"
+	cloudMapLabelInstanceID           = cloudMapLabel + "instance_id"
+	cloudMapLabelInstanceState        = cloudMapLabel + "instance_state"
+	cloudMapLabelClusterName          = cloudMapLabel + "cluster_name"
+	cloudMapLabelPrivateIP            = cloudMapLabel + "private_ip"
+	cloudMapLabelTaskDefinitionFamily = cloudMapLabel + "ecs_task_definition_family"
+	cloudMapLabelServiceName          = cloudMapLabel + "service_name"
+	cloudMapLabelAccountId            = cloudMapLabel + "account_id"
 )
 
 // DefaultSDConfig is the default EC2 SD configuration.
@@ -164,6 +166,8 @@ func (d *Discovery) refresh(ctx context.Context) ([]*targetgroup.Group, error) {
 										labels[cloudMapLabelAZ] = model.LabelValue(*instance.Attributes["AVAILABILITY_ZONE"])
 										labels[cloudMapLabelInstanceState] = model.LabelValue(*instance.Attributes["AWS_INIT_HEALTH_STATUS"])
 										labels[cloudMapLabelClusterName] = model.LabelValue(*instance.Attributes["ECS_CLUSTER_NAME"])
+										labels[cloudMapLabelTaskDefinitionFamily] = model.LabelValue(*instance.Attributes["ECS_TASK_DEFINITION_FAMILY"])
+										labels[cloudMapLabelServiceName] = model.LabelValue(*instance.Attributes["ECS_SERVICE_NAME"])
 										labels[cloudMapLabelAccountId] = model.LabelValue(ParseAccountNumberFromArn(d.roleARN))
 
 										tg.Targets = append(tg.Targets, labels)
