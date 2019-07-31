@@ -168,7 +168,6 @@ func (d *Discovery) refresh(ctx context.Context) ([]*targetgroup.Group, error) {
 										//	labels[cloudMapLabelPrivateDNS] = model.LabelValue(*inst.PrivateDnsName) // Can be built from Service.Name + Namespace.Properties.HttpProperties.HttpName
 										//}
 
-
 										labels[cloudMapLabelAZ] = model.LabelValue(*instance.Attributes["AVAILABILITY_ZONE"])
 										labels[cloudMapLabelInstanceState] = model.LabelValue(*instance.Attributes["AWS_INIT_HEALTH_STATUS"])
 										labels[cloudMapLabelClusterName] = model.LabelValue(*instance.Attributes["ECS_CLUSTER_NAME"])
