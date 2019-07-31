@@ -155,14 +155,19 @@ func (d *Discovery) refresh(ctx context.Context) ([]*targetgroup.Group, error) {
 											cloudMapLabelInstanceID: model.LabelValue(*instance.Id),
 										}
 
+										if instance.Attributes["AWS_INSTANCE_IPV4"] != nil && instance.Attributes["AWS_INSTANCE_PORT"] != nil {
+											addr := net.JoinHostPort(*instance.Attributes["AWS_INSTANCE_IPV4"], *instance.Attributes["AWS_INSTANCE_PORT"])
+											labels[model.AddressLabel] = model.LabelValue(addr)
+										} else {
+											continue
+										}
+
 										labels[cloudMapLabelPrivateIP] = model.LabelValue(*instance.Attributes["AWS_INSTANCE_IPV4"])
 
 										//if inst.PrivateDnsName != nil {
 										//	labels[cloudMapLabelPrivateDNS] = model.LabelValue(*inst.PrivateDnsName) // Can be built from Service.Name + Namespace.Properties.HttpProperties.HttpName
 										//}
 
-										addr := net.JoinHostPort(*instance.Attributes["AWS_INSTANCE_IPV4"], fmt.Sprintf("%d", d.port))
-										labels[model.AddressLabel] = model.LabelValue(addr)
 										labels[cloudMapLabelAZ] = model.LabelValue(*instance.Attributes["AVAILABILITY_ZONE"])
 										labels[cloudMapLabelInstanceState] = model.LabelValue(*instance.Attributes["AWS_INIT_HEALTH_STATUS"])
 										labels[cloudMapLabelClusterName] = model.LabelValue(*instance.Attributes["ECS_CLUSTER_NAME"])
