@@ -41,7 +41,7 @@ type AccountDetails struct {
 }
 
 var AccountsDetails = map[string]AccountDetails{
-    "685154231839": {Service: "marketing", Environment: "staging"},
+	"685154231839": {Service: "marketing", Environment: "staging"},
 	"973393464270": {Service: "marketing", Environment: "production"},
 	"882639863719": {Service: "studio", Environment: "edge"},
 	"385945872227": {Service: "studio", Environment: "staging"},
