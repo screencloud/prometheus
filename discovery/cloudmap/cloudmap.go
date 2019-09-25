@@ -35,6 +35,26 @@ import (
 	"github.com/prometheus/prometheus/discovery/targetgroup"
 )
 
+type AccountDetails struct {
+	Service     string
+	Environment string
+}
+
+var AccountsDetails = map[string]AccountDetails{
+	"685154231839": {Service: "marketing", Environment: "staging"},
+	"973393464270": {Service: "marketing", Environment: "production"},
+	"882639863719": {Service: "studio", Environment: "edge"},
+	"385945872227": {Service: "studio", Environment: "staging"},
+	"421997533442": {Service: "studio", Environment: "production"},
+	"446227850179": {Service: "studioApps", Environment: "edge"},
+	"915340941395": {Service: "studioApps", Environment: "staging"},
+	"222265345133": {Service: "studioApps", Environment: "production"},
+	"015600971885": {Service: "screens", Environment: "edge"},
+	"649318574937": {Service: "screens", Environment: "staging"},
+	"237831806633": {Service: "screens", Environment: "production"},
+	"311110039411": {Service: "root", Environment: "production"},
+}
+
 const (
 	cloudMapLabel                     = "" //model.MetaLabelPrefix + "cloudMap_"
 	cloudMapLabelAZ                   = cloudMapLabel + "availability_zone"
@@ -45,6 +65,8 @@ const (
 	cloudMapLabelTaskDefinitionFamily = cloudMapLabel + "ecs_task_definition_family"
 	cloudMapLabelServiceName          = cloudMapLabel + "service_name"
 	cloudMapLabelAccountId            = cloudMapLabel + "account_id"
+	cloudMapLabelAccountService       = cloudMapLabel + "account_service"
+	cloudMapLabelAccountEnvironment   = cloudMapLabel + "account_environment"
 )
 
 // DefaultSDConfig is the default EC2 SD configuration.
@@ -162,6 +184,7 @@ func (d *Discovery) refresh(ctx context.Context) ([]*targetgroup.Group, error) {
 											continue
 										}
 
+										var accountNumber = ParseAccountNumberFromArn(d.roleARN)
 										labels[cloudMapLabelPrivateIP] = model.LabelValue(*instance.Attributes["AWS_INSTANCE_IPV4"])
 
 										//if inst.PrivateDnsName != nil {
@@ -173,7 +196,9 @@ func (d *Discovery) refresh(ctx context.Context) ([]*targetgroup.Group, error) {
 										labels[cloudMapLabelClusterName] = model.LabelValue(*instance.Attributes["ECS_CLUSTER_NAME"])
 										labels[cloudMapLabelTaskDefinitionFamily] = model.LabelValue(*instance.Attributes["ECS_TASK_DEFINITION_FAMILY"])
 										labels[cloudMapLabelServiceName] = model.LabelValue(*instance.Attributes["ECS_SERVICE_NAME"])
-										labels[cloudMapLabelAccountId] = model.LabelValue(ParseAccountNumberFromArn(d.roleARN))
+										labels[cloudMapLabelAccountId] = model.LabelValue(accountNumber)
+										labels[cloudMapLabelAccountService] = model.LabelValue(AccountsDetails[accountNumber].Service)
+										labels[cloudMapLabelAccountEnvironment] = model.LabelValue(AccountsDetails[accountNumber].Environment)
 
 										tg.Targets = append(tg.Targets, labels)
 									}
